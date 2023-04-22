@@ -30,7 +30,8 @@
         "}"
     ],
     "post_install": [
-        "New-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name a4albers-backup -Value \"$dir\\backup.exe\""
+        "New-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name a4albers-backup -Value \"$dir\\backup.exe\"",
+        "Start-Process -FilePath \"$dir\\backup.exe\""
     ],
     "pre_uninstall": [
         "Get-Process backup -ErrorAction SilentlyContinue | Where-Object {$_.id} | Stop-Process | Wait-Process -Timeout 30"
